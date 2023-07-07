@@ -1,0 +1,11 @@
+name: Greeting
+on:
+  schedule:
+    - cron:  '*/5 * * * *'
+jobs:
+  # This workflow contains a single job called "build"
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every time
+        run: echo "Hello farao"

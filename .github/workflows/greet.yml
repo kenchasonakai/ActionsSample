@@ -1,7 +1,7 @@
 name: Greeting
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '0 14 * * 1-5'
 jobs:
   # This workflow contains a single job called "build"
   greeting:

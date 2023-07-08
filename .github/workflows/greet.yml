@@ -1,4 +1,4 @@
-name: Greeting
+name: Create auto Pull Request
 on: workflow_dispatch
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ADD_TO_PROJECT_PAT }}
           commit-message: update authors
           title: 本番リリース
           body: リリース内容を記載してください

@@ -6,14 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: create pull request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.ADD_TO_PROJECT_PAT }}
-          commit-message: update authors
-          title: 本番リリース
-          body: リリース内容を記載してください
-          branch: release
-          base: main
+      - name: Create release pr
+        run: gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

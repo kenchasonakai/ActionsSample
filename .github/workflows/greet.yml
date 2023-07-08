@@ -2,8 +2,18 @@ name: Greeting
 on: workflow_dispatch
 
 jobs:
-  greeting:
+  create-auto-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: echo greet
-        run: echo "Hello farao"
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: create pull request
+      - uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: update authors
+          title: 本番リリース
+          body: リリース内容を記載してください
+          branch: release
+          base: main

@@ -18,17 +18,17 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: git pull develop diff to release
+        id: create_pr
         if: steps.check_pr.outputs.count == 0
         run: |
          git switch release
          git pull origin develop
          git push origin release
-      - name: Create release pr
-        if: steps.check_pr.outputs.count == 0
-        run: gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
+         gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Send custom JSON data to Slack workflow
+        if: steps.create_pr.outcome == 'success'
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:

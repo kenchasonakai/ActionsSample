@@ -12,13 +12,17 @@ jobs:
       - name: check_pr
         run: |
           echo "count=$(gh pr list -S 本番リリース' in:title' -B main | wc -l)" >> $GITHUB_OUTPUT
-          echo steps.check_pr.outputs.count
+          echo $(steps.check_pr.outputs.count)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: git pull develop diff to release
-        if: ${{ steps.check_pr.outputs.count == 0 }}
+        if: "steps.check_pr.outputs.count == 0"
         run: |
-           echo hello
+          echo hello
+      - name: 'if false'
+        if: "!(steps.check_pr.outputs.count == 0)"
+        run: |
+          echo 'good night'
 #          git switch release
 #          git pull origin develop
 #          git push origin release

@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: check_pr
         with:
           ref: release
           fetch-depth: 0
+      - name: check_pr
         run: |
           echo "::set-output name=count::$(gh pr list -S 本番リリース' in:title' -B main | wc -l)"
         env:

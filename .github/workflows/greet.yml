@@ -15,14 +15,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: git pull develop diff to release
-        if: true
+        if: "${{ steps.check_pr.outputs.count }} == 1"
         run: |
-          echo "${{ steps.check_pr.outputs }}"
           echo hello
       - name: 'if false'
-        if: false
+        if: "${{ steps.check_pr.outputs.count }} == 1"
         run: |
-          echo ${{ steps.check_pr.outputs }}
           echo bye
 #          git switch release
 #          git pull origin develop

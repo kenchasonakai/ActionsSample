@@ -18,3 +18,14 @@ jobs:
         run: gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "channel": "#times_nakai",
+              "text": "ちゃっす"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

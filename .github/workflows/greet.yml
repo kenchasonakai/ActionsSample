@@ -35,7 +35,7 @@ jobs:
           payload: |
             {
               "channel": "#times_nakai",
-              "text": "ちゃっす"
+              "text": "<${{ secrets.SLACK_TARGET_MENTION }}>本番リリース用のプルリクエストを作成しました。内容を確認してください"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

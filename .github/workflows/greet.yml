@@ -15,7 +15,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: git pull develop diff to release
-        if: "${{ steps.check_pr.outputs.count }} == 1"
+        if: "${{ steps.check_pr.outputs.count }} == 0"
         run: |
           echo hello
       - name: 'if false'

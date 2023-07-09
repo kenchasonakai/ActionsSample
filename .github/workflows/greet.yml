@@ -35,7 +35,7 @@ jobs:
           payload: |
             {
               "channel": "#times_nakai",
-              "text": "<@${{ secrets.SLACK_TARGET_MENTION }}>本番リリース用のプルリクエストを作成しました。内容を確認してください"
+              "text": "<@${{ secrets.SLACK_TARGET_MENTION }}>本番リリース用のプルリクエストを作成しました。内容を確認してください\n$(echo $(gh pr view release) | grep -o 'https://github.com/[^ ]*' | awk 'NR==1')"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

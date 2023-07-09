@@ -11,8 +11,7 @@ jobs:
           fetch-depth: 0
       - name: check_pr
         run: |
-          echo "count=$(gh pr list --search '本番リリース in:title' -B main | wc -l)" >> "$GITHUB_OUTPUT"
-          test steps.check_pr.outputs.count = 1; echo $?
+          echo "count=$(gh pr list --search '本番リリース in:title' -B main | wc -l)" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: git pull develop diff to release

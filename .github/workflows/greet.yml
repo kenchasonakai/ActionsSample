@@ -11,7 +11,8 @@ jobs:
         with:
           ref: release
           fetch-depth: 0
-      - name: check_pr
+      - id: check_pr
+        name: check_pr
         run: |
           echo "count=$(gh pr list --search '本番リリース in:title' -B main | wc -l)" >> $GITHUB_OUTPUT
         env:

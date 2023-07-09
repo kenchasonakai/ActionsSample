@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with: 
-          depth: 0
+        with:
+          ref: develop
+          fetch-depth: 0
       - name: merge from main to develop
         run: |
           git pull origin main

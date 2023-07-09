@@ -1,0 +1,17 @@
+name: Auto merge to develop from main
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with: 
+          depth: 0
+      - name: merge from main to develop
+        run: |
+          git pull origin main
+          git push origin develop

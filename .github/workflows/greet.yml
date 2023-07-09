@@ -5,27 +5,31 @@ jobs:
   create-auto-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: check_pr
+        uses: actions/checkout@v3
         with:
           ref: release
           fetch-depth: 0
-      - name: git pull develop diff to release
         run: |
-          git switch release
-          git pull origin develop
-          git push origin release
-      - name: Create release pr
-        run: gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Send custom JSON data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          payload: |
-            {
-              "channel": "#times_nakai",
-              "text": "ちゃっす"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          echo "::set-output name=count::$(gh pr list -S 本番リリース' in:title' -B main | wc -l)"
+#      - name: git pull develop diff to release
+#        if: ${{ steps.check_pr.outputs.count == 0 }}
+#        run: |
+#          git switch release
+#          git pull origin develop
+#          git push origin release
+#      - name: Create release pr
+#        run: gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
+#        env:
+#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Send custom JSON data to Slack workflow
+#        id: slack
+#        uses: slackapi/slack-github-action@v1.24.0
+#        with:
+#          payload: |
+#            {
+#              "channel": "#times_nakai",
+#              "text": "ちゃっす"
+#            }
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

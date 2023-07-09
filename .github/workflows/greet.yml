@@ -25,6 +25,7 @@ jobs:
          git pull origin develop
          git push origin release
          gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
+         echo "pull_request_url=$(gh pr view release | grep -o 'https://github.com/[^ ]*' | awk 'NR==1')" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Send custom JSON data to Slack workflow
@@ -35,7 +36,7 @@ jobs:
           payload: |
             {
               "channel": "#times_nakai",
-              "text": "<@${{ secrets.SLACK_TARGET_MENTION }}>本番リリース用のプルリクエストを作成しました。内容を確認してください\n$(echo $(gh pr view release) | grep -o 'https://github.com/[^ ]*' | awk 'NR==1')"
+              "text": "<@${{ secrets.SLACK_TARGET_MENTION }}>本番リリース用のプルリクエストを作成しました。内容を確認してください\n${{ steps.create_pr.outputs.pull_request_url }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

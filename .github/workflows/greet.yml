@@ -1,7 +1,6 @@
 name: Create auto Pull Request
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   create-auto-pr:

@@ -19,7 +19,7 @@ jobs:
         run: |
           echo hello
       - name: 'if false'
-        if: !(${{ steps.check_pr.outputs.count == '' }})
+        if: ! ${{ steps.check_pr.outputs.count == '' }}
         run: |
           echo bye
 #          git switch release

@@ -18,10 +18,12 @@ jobs:
         if: "(${{ steps.check_pr.outputs.count }} == 0)"
         run: |
           echo ${{ steps.check_pr.outputs.count }}
+          echo hello
       - name: 'if false'
         if: "!(${{ steps.check_pr.outputs.count }} == 0)"
         run: |
           echo ${{ steps.check_pr.outputs.count }}
+          echo bye
 #          git switch release
 #          git pull origin develop
 #          git push origin release

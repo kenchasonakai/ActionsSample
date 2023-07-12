@@ -21,8 +21,9 @@ jobs:
         id: create_pr
         if: steps.check_pr.outputs.count == 0
         run: |
-         git flow release start $(date +%Y-%m-%d)
-         git push origin release/$(date +%Y-%m-%d)
+         cho "branch_name=release/$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
+         git switch -c {{ steps.create_pr.outputs.branch_name }}
+         git push origin {{ steps.create_pr.outputs.branch_name }}
          gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
          echo "pull_request_url=$(gh pr view release | grep -o 'https://github.com/[^ ]*' | awk 'NR==1')" >> $GITHUB_OUTPUT
         env:

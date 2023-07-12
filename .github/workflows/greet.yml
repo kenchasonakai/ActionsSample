@@ -22,7 +22,7 @@ jobs:
         if: steps.check_pr.outputs.count == 0
         run: |
           git switch -c release/$(date +%Y-%m-%d)
-          git push origin head
+          git push origin release/$(date +%Y-%m-%d)
           gh pr create -B "main" -t "本番リリース" -b "リリース内容を記載してください"
           echo "pull_request_url=$(gh pr view release | grep -o 'https://github.com/[^ ]*' | awk 'NR==1')" >> $GITHUB_OUTPUT
         env:

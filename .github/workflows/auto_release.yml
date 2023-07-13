@@ -16,8 +16,8 @@ jobs:
         with:
           ref: develop
           fetch-depth: 0
-      - name: pull main
+      - name: merge main
         run: |
-          git config --global pull.ff only
+          git config pull.rebase true
           git pull origin main
           git push origin develop

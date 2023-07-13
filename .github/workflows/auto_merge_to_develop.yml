@@ -1,7 +1,5 @@
 name: Auto Release
 on:
-  push:
-    branches: main
   pull_request:
     types: close
     branches: main
@@ -10,7 +8,7 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
+    if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v3
       - name: Create Tag

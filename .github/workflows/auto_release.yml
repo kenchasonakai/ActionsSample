@@ -18,5 +18,8 @@ jobs:
           fetch-depth: 0
       - name: merge main
         run: |
-          git merge main
+          git config pull.rebase false
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git pull origin main
           git push origin develop

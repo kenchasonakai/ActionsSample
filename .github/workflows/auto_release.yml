@@ -1,6 +1,8 @@
 name: Auto Release
 on:
-  push:
+  pull_request:
+    types:
+      - close
     branches:
       - main
   workflow_dispatch:

@@ -1,0 +1,5 @@
+- リリース内容を記載してください
+- tag用のlabelを設定してください(https://github.com/Songmu/tagpr#how-to-determine-the-next-version-number-of-candidate)
+  - メジャー(v1.0.0 -> v2.0.0): tagpr:major
+  - マイナー(v1.0.0 -> v1.1.0): tagpr:minor
+  - パッチ(v1.0.0 -> v1.0.1): タグなし

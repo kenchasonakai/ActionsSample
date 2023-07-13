@@ -22,7 +22,7 @@ jobs:
         run: |
           git switch -c release/$(date +%Y-%m-%d)
           git push origin release/$(date +%Y-%m-%d)
-          gh pr create -B "main" -t "本番リリース" -b "- リリース内容を記載してください\n- tag用のlabelを設定してください\nhttps://github.com/Songmu/tagpr#how-to-determine-the-next-version-number-of-candidate"
+          gh pr create -B "main" -t "本番リリース" --body-file "./.github/RELEASE_WORKFLOW_TEMPLATE.md"
           echo "pull_request_url=$(gh pr view release | grep -o 'https://github.com/[^ ]*' | awk 'NR==1')" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

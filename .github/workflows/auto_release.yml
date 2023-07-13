@@ -1,10 +1,10 @@
 name: Auto Release
 on:
   pull_request:
-    types:
-      - close
     branches:
       - main
+    types:
+      - closed
   workflow_dispatch:
 
 jobs:

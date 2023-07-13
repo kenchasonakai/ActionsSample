@@ -1,0 +1,23 @@
+name: Auto Release
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: pull main
+        uses: actions/checkout@v3
+        with:
+          ref: develop
+          fetch-depth: 0
+        run: |
+          git config --global pull.ff only
+          git pull origin main
+          git push origin develop

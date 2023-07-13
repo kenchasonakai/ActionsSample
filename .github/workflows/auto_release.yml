@@ -18,6 +18,5 @@ jobs:
           fetch-depth: 0
       - name: merge main
         run: |
-          git config pull.rebase true
-          git pull origin main
+          git merge main
           git push origin develop

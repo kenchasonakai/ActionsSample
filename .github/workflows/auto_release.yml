@@ -13,6 +13,7 @@ jobs:
         with:
           ref: main
       - name: create tag and release
+        if: startsWith(github.head_ref, 'release') || startsWith(github.head_ref, 'hotfix')
         uses: Songmu/tagpr@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

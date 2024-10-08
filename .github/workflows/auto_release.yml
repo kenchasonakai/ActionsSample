@@ -27,6 +27,8 @@ jobs:
           app-id: ${{ secrets.APP_ID_GITUSER }}
           private-key: ${{ secrets.APP_GITUSER_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
+          repositories: |
+            ${{ github.repository }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get GitHub App User ID
